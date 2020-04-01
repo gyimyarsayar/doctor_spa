@@ -1,18 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Home from "./views/Home";
-import About from "./views/About";
-import Users from "./views/Users";
-
-// note from htet lin maung
-// material-ui is already installed. To use this
-// go read at material-ui doc
-// redux is also installed
+import routes from "./router/routes";
 
 const App = () => {
   return (
-    // Example of react router
     <Router>
       <div>
         <nav>
@@ -29,18 +21,12 @@ const App = () => {
           </ul>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-      renders the first one that matches the current URL. */}
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
+          {routes.map(route => (
+            <Route exact path={route.path}>
+              {route.component}
+            </Route>
+          ))}
         </Switch>
       </div>
     </Router>
