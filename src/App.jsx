@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import routes from "./router/routes";
 
+import Appbar from "./components/Appbar";
+
 const App = () => {
   return (
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -19,7 +21,8 @@ const App = () => {
               <Link to="/users">Users</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
+        <Appbar />
 
         <Switch>
           {routes.map(route => (
