@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { setState } from "../store/actions/main";
+import { kDrawerWidth } from "../constants";
+import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -24,7 +28,20 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: "#35DCCF",
-    boxShadow: "0px 2px 6px #0000000A"
+    boxShadow: "0px 2px 6px #0000000A",
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  appBarShift: {
+    marginLeft: kDrawerWidth,
+    width: `calc(100% - ${kDrawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   logo: {
     width: kLogoSize,
@@ -35,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 15,
     fontWeight: "bold",
     marginRight: theme.spacing(8)
+  },
+  hide: {
+    display: "none"
   },
   splitter: {
     width: 1,
@@ -50,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Appbar = () => {
+const Appbar = ({ setState, drawerOpen }) => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -64,13 +84,25 @@ const Appbar = () => {
     setAnchorEl(null);
   };
 
+  const handleDrawerOpen = () => {
+    setState({ drawerOpen: true });
+  };
+
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar} position="static">
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: drawerOpen
+        })}
+      >
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            onClick={handleDrawerOpen}
+            className={clsx(classes.menuButton, {
+              [classes.hide]: drawerOpen
+            })}
             color="inherit"
             aria-label="menu"
           >
@@ -123,4 +155,10 @@ const Appbar = () => {
   );
 };
 
-export default Appbar;
+const mapStateToProps = (state) => ({
+  drawerOpen: state.main.drawerOpen
+});
+
+const mapDispatchToProps = { setState };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Appbar);
