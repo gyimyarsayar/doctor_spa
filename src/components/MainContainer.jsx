@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen
     }),
     paddingLeft: 103,
-    paddingTop: "3rem"
+    paddingTop: "3.5rem"
   },
   contentShift: {
     transition: theme.transitions.create("padding", {
