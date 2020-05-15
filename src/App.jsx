@@ -12,7 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div>
+        <div style={{ background: "#A4A1FB4A" }}>
           <Appbar />
           <MiniDrawer />
           <Switch>
