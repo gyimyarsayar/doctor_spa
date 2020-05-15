@@ -7,6 +7,7 @@ import routes from "./router/routes";
 
 import Appbar from "./components/Appbar";
 import MiniDrawer from "./components/MiniDrawer";
+import MainContainer from "./components/MainContainer";
 
 const App = () => {
   return (
@@ -14,13 +15,15 @@ const App = () => {
       <Router>
         <Appbar />
         <MiniDrawer />
-        <Switch>
-          {routes.map((route, i) => (
-            <Route key={i} exact path={route.path}>
-              {route.component}
-            </Route>
-          ))}
-        </Switch>
+        <MainContainer>
+          <Switch>
+            {routes.map((route, i) => (
+              <Route key={i} exact path={route.path}>
+                {route.component}
+              </Route>
+            ))}
+          </Switch>
+        </MainContainer>
       </Router>
     </Provider>
   );
