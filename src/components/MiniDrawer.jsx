@@ -11,16 +11,27 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
+// static images
+import windowOutline from "../static/images/window-outline.png";
+import clipboard from "../static/images/clipboard-square-symbol.png";
+import email from "../static/images/opened-email-outlined-envelope-back-interface-symbol.png";
+import calendar from "../static/images/weekly-calendar-outline-event-interface-symbol.png";
+import user from "../static/images/user-outline-male-symbol-of-interface.png";
+import chat from "../static/images/chat-oval-speech-bubbles-symbol.png";
+import gear from "../static/images/gear-outlined-symbol.png";
+
+const kDrawerIconSize = 17;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: kDrawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap"
+  },
+  root: {
+    background:
+      "transparent linear-gradient(180deg, #FFFFFF 0%, #EBFEFC 43%, #35DCCF 96%, #35F2E3 100%) 0% 0% no-repeat padding-box"
   },
   drawerOpen: {
     width: kDrawerWidth,
@@ -47,6 +58,18 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar
+  },
+  staticIcon: {
+    width: kDrawerIconSize,
+    height: kDrawerIconSize
+  },
+  listItem: {
+    justifyContent: "center",
+    height: 53,
+    margin: "1rem 0",
+    "&:hover": {
+      background: "#3f78d929"
+    }
   }
 }));
 
@@ -66,7 +89,7 @@ const MiniDrawer = ({ open, setState }) => {
         [classes.drawerClose]: !open
       })}
       classes={{
-        paper: clsx({
+        paper: clsx(classes.root, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open
         })
@@ -83,25 +106,13 @@ const MiniDrawer = ({ open, setState }) => {
       </div>
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {[windowOutline, clipboard, email, calendar, user, chat, gear].map(
+          (image, index) => (
+            <ListItem button key={index} className={classes.listItem}>
+              <img className={classes.staticIcon} src={image} alt="" />
+            </ListItem>
+          )
+        )}
       </List>
     </Drawer>
   );
