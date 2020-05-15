@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2)
   },
   appBar: {
-    backgroundColor: "#35DCCF"
+    backgroundColor: "#35DCCF",
+    boxShadow: "0px 2px 6px #0000000A"
   },
   logo: {
     width: kLogoSize,
