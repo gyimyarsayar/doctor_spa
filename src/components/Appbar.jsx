@@ -11,6 +11,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Badge from "@material-ui/core/Badge";
+import logo from "../static/images/Intersection 2@2x.png";
+
+const kLogoSize = 55;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#35DCCF"
   },
   logo: {
-    flexGrow: 1
+    width: kLogoSize,
+    height: kLogoSize
   },
   profileName: {
     color: "#4078D9",
@@ -37,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
     background: "#1279BA",
     marginRight: theme.spacing(3),
     marginLeft: theme.spacing(3)
+  },
+  badge: {
+    background:
+      "transparent linear-gradient(180deg, #4078D9 0%, #3AB6DE 62%, #35F2E3 100%, #203C6D 100%) 0% 0% no-repeat padding-box",
+    border: "2px solid #fff"
   }
-  // badge: {
-  //   color:
-  //     "transparent linear-gradient(180deg, #4078D9 0%, #3AB6DE 62%, #35F2E3 100%, #203C6D 100%) 0% 0% no-repeat padding-box",
-  //   border: "2px solid #fff"
-  // }
 }));
 
 const Appbar = () => {
@@ -71,16 +75,17 @@ const Appbar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <div className={classes.logo}></div>
+          <div style={{ flexGrow: 1 }} />
+          <img className={classes.logo} src={logo} alt="Hospital Logo" />
+          <div style={{ flexGrow: 1 }} />
           <Badge
-            className={classes.badge}
+            classes={{ badge: classes.badge }}
             color="primary"
             overlap="circle"
             variant="dot"
           >
             <NotificationsIcon fontSize="small" style={{ color: "#4078D9" }} />
           </Badge>
-
           <div className={classes.splitter} />
           <Typography className={classes.profileName}>Kyi</Typography>
           <ExpandMoreIcon style={{ color: "#4078D9" }} />
