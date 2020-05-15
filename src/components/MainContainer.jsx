@@ -13,14 +13,15 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    paddingLeft: 73
+    paddingLeft: 103,
+    paddingTop: "3rem"
   },
   contentShift: {
     transition: theme.transitions.create("padding", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
-    paddingLeft: kDrawerWidth
+    paddingLeft: kDrawerWidth + 30
   },
   toolbar: {
     display: "flex",
