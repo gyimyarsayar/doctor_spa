@@ -12,17 +12,15 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div style={{ background: "#A4A1FB4A" }}>
-          <Appbar />
-          <MiniDrawer />
-          <Switch>
-            {routes.map((route, i) => (
-              <Route key={i} exact path={route.path}>
-                {route.component}
-              </Route>
-            ))}
-          </Switch>
-        </div>
+        <Appbar />
+        <MiniDrawer />
+        <Switch>
+          {routes.map((route, i) => (
+            <Route key={i} exact path={route.path}>
+              {route.component}
+            </Route>
+          ))}
+        </Switch>
       </Router>
     </Provider>
   );
