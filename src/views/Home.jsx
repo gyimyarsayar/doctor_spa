@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import OverviewCard from "../components/home/OverviewCard";
+import BudgetCard from "../components/home/BudgetCard";
 
 import doctor from "../static/images/Group 2765.png";
 import nurse from "../static/images/Group 2660.png";
@@ -86,10 +87,11 @@ const Home = () => {
         item
         xs={8}
         spacing={3}
-        style={{ justifyContent: "space-between" }}
+        justify="space-between"
+        style={{ marginRight: 12 }}
       >
         {overviews.map((overview, i) => (
-          <Grid item key={i}>
+          <Grid style={{paddingBottom: 0}} item key={i}>
             <OverviewCard
               name={overview.name}
               count={overview.count}
@@ -98,7 +100,14 @@ const Home = () => {
           </Grid>
         ))}
       </Grid>
-      ,<Grid item xs={4}></Grid>
+      <Grid item sm={12} md={4}>
+        <BudgetCard
+          header="Hospital"
+          footer="Budget"
+          count="35,604,000.00"
+          percent="40"
+        />
+      </Grid>
     </Grid>
   );
 };

@@ -33,9 +33,13 @@ const OverviewCard = ({ name, count, img }) => {
   return (
     <Card className={classes.card}>
       <Grid container className={classes.grid}>
-        <Grid direction="column">
-          <Typography className={classes.label}>{count}</Typography>
-          <Typography className={classes.label}>{name}</Typography>
+        <Grid container item xs={7} direction="column">
+          <Grid>
+            <Typography className={classes.label}>{count}</Typography>
+          </Grid>
+          <Grid>
+            <Typography className={classes.label}>{name}</Typography>
+          </Grid>
         </Grid>
         <Grid>
           <img src={img} alt="" />
