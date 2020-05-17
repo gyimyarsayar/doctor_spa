@@ -74,33 +74,43 @@ const Home = () => {
     }
   ];
 
+  const titlePaddingBottom = "1.5rem";
+
   return (
     <Grid container spacing={3} style={{ margin: 0 }}>
       <Grid item xs={8}>
-        <Typography className={classes.title}>Overview</Typography>
-      </Grid>
-      <Grid item xs={4}>
-        <Typography className={classes.title}>Budget Report</Typography>
-      </Grid>
-      <Grid
-        container
-        item
-        xs={8}
-        spacing={3}
-        justify="space-between"
-        style={{ marginRight: 12 }}
-      >
-        {overviews.map((overview, i) => (
-          <Grid style={{paddingBottom: 0}} item key={i}>
-            <OverviewCard
-              name={overview.name}
-              count={overview.count}
-              img={overview.img}
-            />
-          </Grid>
-        ))}
+        <Typography
+          style={{ paddingBottom: titlePaddingBottom }}
+          className={classes.title}
+        >
+          Overview
+        </Typography>
+        <Grid
+          container
+          item
+          xs={12}
+          spacing={3}
+          justify="space-between"
+          style={{ marginRight: 12 }}
+        >
+          {overviews.map((overview, i) => (
+            <Grid style={{ paddingBottom: 0 }} item key={i}>
+              <OverviewCard
+                name={overview.name}
+                count={overview.count}
+                img={overview.img}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
       <Grid item sm={12} md={4}>
+        <Typography
+          style={{ paddingBottom: titlePaddingBottom }}
+          className={classes.title}
+        >
+          Budget Report
+        </Typography>
         <BudgetCard
           header="Hospital"
           footer="Budget"
