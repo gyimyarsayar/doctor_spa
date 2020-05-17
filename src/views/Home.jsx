@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 
 import OverviewCard from "../components/home/OverviewCard";
 import BudgetCard from "../components/home/BudgetCard";
+import ResourceCard from "../components/home/ResourceCard";
 
 import doctor from "../static/images/Group 2765.png";
 import nurse from "../static/images/Group 2660.png";
@@ -73,7 +74,6 @@ const Home = () => {
       img: death
     }
   ];
-
   const titlePaddingBottom = "1.5rem";
 
   return (
@@ -117,6 +117,15 @@ const Home = () => {
           count="35,604,000.00"
           percent="40"
         />
+      </Grid>
+      <Grid item xs={12} style={{marginTop: '5rem'}}>
+        <Typography
+          className={classes.title}
+          style={{ paddingBottom: titlePaddingBottom }}
+        >
+          Resources(Medicine Stocks) Report
+        </Typography>
+        <ResourceCard />
       </Grid>
     </Grid>
   );
