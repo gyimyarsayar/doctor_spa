@@ -78,7 +78,7 @@ const Home = () => {
 
   return (
     <Grid container spacing={3} style={{ margin: 0 }}>
-      <Grid item xs={8}>
+      <Grid item xs={12} md={8}>
         <Typography
           style={{ paddingBottom: titlePaddingBottom }}
           className={classes.title}
@@ -118,7 +118,7 @@ const Home = () => {
           percent="40"
         />
       </Grid>
-      <Grid item xs={12} style={{marginTop: '5rem'}}>
+      <Grid item xs={12} style={{ marginTop: "5rem" }}>
         <Typography
           className={classes.title}
           style={{ paddingBottom: titlePaddingBottom }}
