@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setState } from "../store/actions/main";
+import { useLocation, useHistory } from "react-router-dom";
 import { kDrawerWidth } from "../constants";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -70,16 +71,57 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       background: "#3f78d929"
     }
+  },
+  selected: {
+    background: "#3f78d929",
+    borderLeft: "3px solid #4078d9b3"
   }
 }));
 
 const MiniDrawer = ({ open, setState }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const location = useLocation();
+  const history = useHistory();
 
   const handleDrawerClose = () => {
     setState({ drawerOpen: false });
   };
+
+  const handleRouteChange = (path) => {
+    history.push(path);
+  };
+
+  const listItems = [
+    {
+      path: "/",
+      image: windowOutline
+    },
+    {
+      path: "",
+      image: clipboard
+    },
+    {
+      path: "",
+      image: email
+    },
+    {
+      path: "",
+      image: calendar
+    },
+    {
+      path: "",
+      image: user
+    },
+    {
+      path: "",
+      image: chat
+    },
+    {
+      path: "",
+      image: gear
+    }
+  ];
 
   return (
     <Drawer
@@ -106,13 +148,18 @@ const MiniDrawer = ({ open, setState }) => {
       </div>
       <Divider />
       <List>
-        {[windowOutline, clipboard, email, calendar, user, chat, gear].map(
-          (image, index) => (
-            <ListItem button key={index} className={classes.listItem}>
-              <img className={classes.staticIcon} src={image} alt="" />
-            </ListItem>
-          )
-        )}
+        {listItems.map((item, index) => (
+          <ListItem
+            button
+            key={index}
+            onClick={handleRouteChange.bind(this, item.path)}
+            className={clsx(classes.listItem, {
+              [classes.selected]: item.path === location.pathname
+            })}
+          >
+            <img className={classes.staticIcon} src={item.image} alt="" />
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   );
