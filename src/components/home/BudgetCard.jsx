@@ -22,6 +22,14 @@ const useStyles = makeStyles((theme) => ({
   count: {
     fontSize: 12,
     color: "#4AD991"
+  },
+  absolute: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: 61,
+    textAlign: "center",
+    transform: "translate(-50%, -40%)"
   }
 }));
 
@@ -53,7 +61,7 @@ const BudgetCard = ({ header, footer, count, percent }) => {
           </Typography>
           <Divider />
         </Grid>
-        <Grid item>
+        <Grid item style={{ position: "relative" }}>
           <Doughnut
             data={data}
             width={2}
@@ -64,6 +72,10 @@ const BudgetCard = ({ header, footer, count, percent }) => {
               maintainAspectRatio: true
             }}
           />
+          <Typography className={classes.absolute}>
+            <span style={{ fontSize: 14 }}>{percent}%</span>
+            <span className={classes.title}> Received</span>
+          </Typography>
         </Grid>
         <Grid item>
           <Divider />
