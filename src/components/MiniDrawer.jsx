@@ -28,29 +28,29 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: kDrawerWidth,
     flexShrink: 0,
-    whiteSpace: "nowrap"
+    whiteSpace: "nowrap",
   },
   root: {
     background:
-      "transparent linear-gradient(180deg, #FFFFFF 0%, #EBFEFC 43%, #35DCCF 96%, #35F2E3 100%) 0% 0% no-repeat padding-box"
+      "transparent linear-gradient(180deg, #FFFFFF 0%, #EBFEFC 43%, #35DCCF 96%, #35F2E3 100%) 0% 0% no-repeat padding-box",
   },
   drawerOpen: {
     width: kDrawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   drawerClose: {
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9) + 1
-    }
+      width: theme.spacing(9) + 1,
+    },
   },
   toolbar: {
     display: "flex",
@@ -58,24 +58,24 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
   },
   staticIcon: {
     width: kDrawerIconSize,
-    height: kDrawerIconSize
+    height: kDrawerIconSize,
   },
   listItem: {
     justifyContent: "center",
     height: 53,
     margin: "1rem 0",
     "&:hover": {
-      background: "#3f78d929"
-    }
+      background: "#3f78d929",
+    },
   },
   selected: {
     background: "#3f78d929",
-    borderLeft: "3px solid #4078d9b3"
-  }
+    borderLeft: "3px solid #4078d9b3",
+  },
 }));
 
 const MiniDrawer = ({ open, setState }) => {
@@ -95,32 +95,32 @@ const MiniDrawer = ({ open, setState }) => {
   const listItems = [
     {
       path: "/",
-      image: windowOutline
+      image: windowOutline,
+    },
+    {
+      path: "/patients",
+      image: clipboard,
     },
     {
       path: "",
-      image: clipboard
+      image: email,
     },
     {
       path: "",
-      image: email
+      image: calendar,
     },
     {
       path: "",
-      image: calendar
+      image: user,
     },
     {
       path: "",
-      image: user
+      image: chat,
     },
     {
       path: "",
-      image: chat
+      image: gear,
     },
-    {
-      path: "",
-      image: gear
-    }
   ];
 
   return (
@@ -128,13 +128,13 @@ const MiniDrawer = ({ open, setState }) => {
       variant="permanent"
       className={clsx(classes.drawer, {
         [classes.drawerOpen]: open,
-        [classes.drawerClose]: !open
+        [classes.drawerClose]: !open,
       })}
       classes={{
         paper: clsx(classes.root, {
           [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })
+          [classes.drawerClose]: !open,
+        }),
       }}
     >
       <div className={classes.toolbar}>
@@ -154,7 +154,7 @@ const MiniDrawer = ({ open, setState }) => {
             key={index}
             onClick={handleRouteChange.bind(this, item.path)}
             className={clsx(classes.listItem, {
-              [classes.selected]: item.path === location.pathname
+              [classes.selected]: item.path === location.pathname,
             })}
           >
             <img className={classes.staticIcon} src={item.image} alt="" />
@@ -166,7 +166,7 @@ const MiniDrawer = ({ open, setState }) => {
 };
 
 const mapStateToProps = (state) => ({
-  open: state.main.drawerOpen
+  open: state.main.drawerOpen,
 });
 
 const mapDispatchToProps = { setState };
